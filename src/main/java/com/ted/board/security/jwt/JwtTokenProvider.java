@@ -30,7 +30,6 @@ public class JwtTokenProvider {
     //객체 초기화 및 Base64 encoding
     @PostConstruct
     protected void init(){
-
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
@@ -41,7 +40,7 @@ public class JwtTokenProvider {
         Date now = new Date();
         return Jwts.builder()
                 .setClaims(claims) //정보저장
-                .setIssuedAt(now) //토큰 발생시간젖ㅇ보
+                .setIssuedAt(now) //토큰 발생시간정보
                 .setExpiration(new Date(now.getTime() + tokenValidTime)) //만료시간
                 .signWith(SignatureAlgorithm.HS256, secretKey) //암호알고리즘 및 signature에 들어갈 secret값 셋팅
                 .compact();
